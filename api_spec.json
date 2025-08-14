@@ -1,0 +1,111 @@
+{
+    "request": [
+      {
+        "name": "trnsTrceNo",
+        "description": "거래추적번호",
+        "required": true,
+        "type": "STRING(40)",
+        "detail": "거래입자 별 고유 거래번호. 기관명+거래일자(8자리)+Sequence(10자리)",
+        "example": "bccard202506170000000001"
+      },
+      {
+        "name": "instNm",
+        "description": "기관명",
+        "required": true,
+        "type": "STRING(최대100)",
+        "detail": "고유기관명",
+        "example": "bccard"
+      },
+      {
+        "name": "merNm",
+        "description": "가맹점명",
+        "required": false,
+        "type": "STRING",
+        "detail": "검색조건",
+        "example": "진미"
+      },
+      {
+        "name": "location",
+        "description": "지역명",
+        "required": false,
+        "type": "STRING",
+        "detail": "검색조건",
+        "example": "나주"
+      },
+      {
+        "name": "merTpBuzNm",
+        "description": "업종",
+        "required": false,
+        "type": "STRING",
+        "detail": "검색조건",
+        "example": ""
+      }
+    ],
+    "response": [
+      {
+        "name": "rspCode",
+        "description": "응답코드",
+        "required": true,
+        "type": "STRING",
+        "example": "00000"
+      },
+      {
+        "name": "rspMsg",
+        "description": "응답명",
+        "required": true,
+        "type": "STRING",
+        "example": "정상"
+      },
+      {
+        "name": "data",
+        "description": "데이터",
+        "required": false,
+        "type": "LIST",
+        "children": [
+          { "name": "merNm", "description": "가맹점명", "required": true, "type": "STRING", "example": "진미회관" },
+          { "name": "merAddr", "description": "가맹점주소", "required": true, "type": "STRING", "example": "전남 나주시 왕건길 39 (송월동)" },
+          { "name": "merTpno", "description": "가맹점전화번호", "required": false, "type": "STRING", "example": "061-334-2932" },
+          { "name": "merTpBuzNm", "description": "가맹점업종명", "required": true, "type": "STRING", "example": "백반/한정식" },
+          { "name": "allSaleRnk", "description": "전국매출순위", "required": true, "type": "FLOAT", "detail": "백분위", "example": 51.59 },
+          { "name": "ccgSaleRnk", "description": "시군매출순위", "required": true, "type": "FLOAT", "detail": "백분위", "example": 32.41 },
+          { "name": "loclPrsnPpltYn", "description": "현지인맛집여부", "required": true, "type": "BOOLEAN", "example": true },
+          { "name": "merUrl", "description": "가맹점URL", "required": true, "type": "STRING", "example": "https://dev-web.paybooc.ai/mer/webprofile/780073146" },
+          { "name": "strTime", "description": "최초승인시간", "required": true, "type": "STRING", "detail": "한달 기준 최초승인시간", "example": "0615" },
+          { "name": "endTime", "description": "최종승인시간", "required": true, "type": "STRING", "detail": "한달 기준 최종승인시간", "example": "2327" },
+          { "name": "frnrVsitYn", "description": "외국인방문여부", "required": true, "type": "BOOLEAN", "detail": "외국인이 많이 방문하는 가맹점", "example": true },
+          { "name": "empyVsitYn", "description": "회사원방문여부", "required": true, "type": "BOOLEAN", "detail": "회사에 적합한 가맹점", "example": false },
+          { "name": "hldyDwk", "description": "휴무요일", "required": false, "type": "LIST", "detail": "한달 기준 휴무 요일", "example": ["토", "일"] },
+          { "name": "congestionDwk", "description": "붐비는요일", "required": true, "type": "STRING", "detail": "한달 기준 가장 붐비는 요일", "example": "월" },
+          { 
+            "name": "congestionTizn", 
+            "description": "붐비는시간대", 
+            "required": true, 
+            "type": "STRING", 
+            "detail": "한달 기준 가장 붐비는 시간대", 
+            "example": ["새벽", "오전", "점심", "오후", "저녁", "심야"], 
+            "note": { 
+              "새벽": "00 ~ 06", 
+              "오전": "06 ~ 11", 
+              "점심": "11 ~ 14", 
+              "오후": "14 ~ 17", 
+              "저녁": "17 ~ 21", 
+              "심야": "21 ~ 24" 
+            } 
+          },
+          { 
+            "name": "vistCstmrRnkList", 
+            "description": "방문자목록", 
+            "required": false, 
+            "type": "LIST", 
+            "detail": "가장 많이 방문하는 성별/연령대", 
+            "children": [
+              { "name": "rk01", "description": "1순위", "required": true, "type": "STRING", "example": "30대 남성" },
+              { "name": "rk02", "description": "2순위", "required": true, "type": "STRING", "example": "30대 여성" },
+              { "name": "rk03", "description": "3순위", "required": true, "type": "STRING", "example": "40대 여성" }
+            ] 
+          }
+        ]
+      }
+    ]
+  }
+  
