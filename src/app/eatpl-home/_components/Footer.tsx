@@ -10,8 +10,7 @@ const PillLink: FC<PropsWithChildren<{ href?: string; className?: string }>> = (
   <a
     href={href}
     className={cn(
-      "inline-flex items-center justify-center rounded-full border px-5 py-2",
-      "text-[15px] font-semibold text-[#475569] border-[#E5E7EB] bg-white",
+      "inline-flex items-center justify-center rounded-full border px-5 py-2 text-[14px] font-semibold text-[#475569] border-[#E5E7EB] bg-white",
       className,
     )}
   >
@@ -30,9 +29,9 @@ export const Footer: FC = () => {
         </div>
 
         {/* Company info */}
-        <div className="text-[24px] font-extrabold text-[#1F2937]">비씨카드(주)</div>
+        <div className="text-[20px] font-extrabold text-[#1F2937]">비씨카드(주)</div>
         <div className="text-[#6B7280]">
-          <p className="text-[16px] leading-7">
+          <p className="text-[14px] leading-7">
             서울시 중구 을지로 170 비씨카드(주) 대표이사 최원석
             <br/>
             사업자번호 214-81-37726
@@ -41,7 +40,7 @@ export const Footer: FC = () => {
             <span className="mx-2">|</span>
             관광사업자등록번호 제2012-25호
           </p>
-          <p className="text-[16px] leading-7">(비씨카드여행서비스)</p>
+          <p className="text-[14px] leading-7">(비씨카드여행서비스)</p>
         </div>
 
         {/* Bottom policy links

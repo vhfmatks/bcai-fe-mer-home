@@ -62,19 +62,19 @@ export const SearchPanel: FC = () => {
   const router = useRouter();
   const [location, setLocation] = useState<string>("");
   const [merchantName, setMerchantName] = useState<string>("");
-  const [largeKey, setLargeKey] = useState<string | null>(null);
-  const [smallKey, setSmallKey] = useState<string | null>(null);
+  // 대/소분류 통합 단일 선택 상태
+  const [selectedCategoryKey, setSelectedCategoryKey] = useState<string | null>(null);
+  const [selectedCategoryGroup, setSelectedCategoryGroup] = useState<"large" | "small" | null>(null);
 
-  const largeSelectedValue = useMemo(
-    () => LARGE_CATEGORIES.find((c) => c.key === largeKey)?.value,
-    [largeKey]
-  );
-  const smallSelectedValue = useMemo(
-    () => SMALL_CATEGORIES.find((c) => c.key === smallKey)?.value,
-    [smallKey]
-  );
+  const selectedCategoryValue = useMemo(() => {
+    if (!selectedCategoryKey) return "";
+    const foundLarge = LARGE_CATEGORIES.find((c) => c.key === selectedCategoryKey)?.value;
+    if (foundLarge) return foundLarge;
+    const foundSmall = SMALL_CATEGORIES.find((c) => c.key === selectedCategoryKey)?.value;
+    return foundSmall ?? "";
+  }, [selectedCategoryKey]);
 
-  const merTpBuzNm = smallSelectedValue || largeSelectedValue || "";
+  const merTpBuzNm = selectedCategoryValue || "";
 
   const isDisabled = useMemo(() => {
     return !merchantName && !location && !merTpBuzNm;
@@ -125,11 +125,16 @@ export const SearchPanel: FC = () => {
         title="대분류"
         items={LARGE_CATEGORIES}
         defaultExpanded={false}
-        value={largeKey ?? undefined}
+        value={selectedCategoryGroup === "large" ? selectedCategoryKey ?? undefined : undefined}
         onChange={(key) => {
-          setLargeKey(key);
-          // 대분류 선택 시 소분류 초기화
-          setSmallKey(null);
+          if (selectedCategoryGroup === "large" && selectedCategoryKey === key) {
+            // 동일 항목 재클릭 시 해제
+            setSelectedCategoryKey(null);
+            setSelectedCategoryGroup(null);
+          } else {
+            setSelectedCategoryKey(key);
+            setSelectedCategoryGroup("large");
+          }
         }}
       />
 
@@ -138,8 +143,17 @@ export const SearchPanel: FC = () => {
         title="소분류"
         items={SMALL_CATEGORIES}
         defaultExpanded={false}
-        value={smallKey ?? undefined}
-        onChange={(key) => setSmallKey(key)}
+        value={selectedCategoryGroup === "small" ? selectedCategoryKey ?? undefined : undefined}
+        onChange={(key) => {
+          if (selectedCategoryGroup === "small" && selectedCategoryKey === key) {
+            // 동일 항목 재클릭 시 해제
+            setSelectedCategoryKey(null);
+            setSelectedCategoryGroup(null);
+          } else {
+            setSelectedCategoryKey(key);
+            setSelectedCategoryGroup("small");
+          }
+        }}
       />
 
       {/* 5. 검색 버튼 */}

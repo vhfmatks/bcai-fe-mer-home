@@ -49,23 +49,25 @@ export const GuidPanel: FC = () => {
         
       </Container>
             {/* 아이콘 필 버튼 그룹 */}
-        <Container className="flex justify-center">
-        <div className="flex flex-wrap gap-3">
+      <Container className="flex justify-center">
+        <div className="flex flex-nowrap gap-3 overflow-x-auto w-full justify-center">
           <IconPillButton
             label="퍼블렉시티"
             href="https://www.perplexity.ai/"
-            icon={<PerplexityIcon className="h-6 w-6" />}
+            className="w-[111px]"
+            icon={<PerplexityIcon className="h-4 w-4" />}
           />
           <IconPillButton
             label="ChatGPT"
             href="https://chat.openai.com/"
-            icon={<ChatGPTIcon className="h-6 w-6" />}
+            className="w-[111px]"
+            icon={<ChatGPTIcon className="h-4 w-4" />}
           />  
           <IconPillButton
             label="LINER"
             href="https://getliner.com/"
-            icon={<LinerIcon className="h-10 w-10" />}
-            className="text-[14px]"
+            icon={<LinerIcon className="h-8 w-8" />}
+            className="text-[14px] w-[111px]"
           />
         </div>
       </Container>

@@ -23,7 +23,7 @@ export const IconPillButton: FC<IconPillButtonProps> = ({ label, icon, className
 
   const content = (
     <>
-      {icon ? <span className="inline-flex h-10 w-10 items-center justify-center">{icon}</span> : null}
+      {icon ? <span className="inline-flex items-center justify-center">{icon}</span> : null}
       <span className="text-[14px]">{label}</span>
       <ChevronRightIcon className="h-4 w-4" />
     </>
