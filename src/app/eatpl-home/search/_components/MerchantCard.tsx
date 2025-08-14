@@ -50,7 +50,7 @@ const MerchantCard: FC<MerchantCardProps> = ({
   const content = (
     <div
       className={cn(
-        "rounded-2xl w-[390px] h-[234px] border border-[#EEF2F6] bg-white p-5 md:p-6 shadow-sm",
+        "rounded-2xl w-[320px] md:w-[390px] h-[234px] border border-[#EEF2F6] bg-white p-5 md:p-6 shadow-sm",
         className,
       )}
     >
