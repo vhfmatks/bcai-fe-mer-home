@@ -23,7 +23,7 @@ const SearchResultPanel: FC<SearchResultPanelProps> = ({
           <div className="text-[12px] text-[#9CA3AF]">{subtitle}</div>
         ) : null}
       </div>
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-2 justify-center">
         {items.map((item, idx) => (
           <MerchantCard key={idx} {...item} />
         ))}
